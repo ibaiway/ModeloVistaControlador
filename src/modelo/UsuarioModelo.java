@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class UsuarioModelo extends Conector {
 
@@ -112,4 +111,29 @@ public class UsuarioModelo extends Conector {
 			e.printStackTrace();
 		}
 	}
+
+	public Usuario selectPorDni(String dni) {
+		Usuario era = new Usuario();
+		
+			try {
+				PreparedStatement pst = super.conexion.prepareStatement("select * from usuarios where dni=?");
+				pst.setString(1, dni);
+				ResultSet rs = pst.executeQuery();
+			
+				if(rs.next()){
+				era.setId(rs.getInt("id")); 
+				era.setNombre(rs.getString("nombre"));
+				era.setApellido(rs.getString("apellido"));
+				era.setEdad(rs.getInt("edad"));
+				era.setDni(rs.getString("dni"));
+				era.setFechaNacimiento(rs.getDate("fechaNacimiento"));
+			  return era;
+				}
+			} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 }
