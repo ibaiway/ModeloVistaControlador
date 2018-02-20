@@ -43,13 +43,18 @@ public class LibroModelo extends Conector{
 		Libro libro = new Libro();
 		
 		try {
-			Statement st = conexion.createStatement();
-			ResultSet rs = st.executeQuery("select * from libros where id=" +id);
+//			Statement st = conexion.createStatement();
+//			ResultSet rs = st.executeQuery("select * from libros where id=" +id);
 			
+			PreparedStatement pst = super.conexion.prepareStatement("select * from libros where id=?");
+			pst.setInt(1, id);
+			ResultSet rs = pst.executeQuery();
+			if (rs.next()){
 			libro.setId(rs.getInt("id"));
 			libro.setTitulo(rs.getString("titulo"));
 			libro.setAutor(rs.getString("autor"));
 			return libro;
+			}
 			
 			
 		} catch (SQLException e) {

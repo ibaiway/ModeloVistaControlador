@@ -72,9 +72,8 @@ public class UsuarioVista {
 		mes = insertador.nextInt();
 		System.out.println("Insertar el dia:");
 		dia = insertador.nextInt();
-		SimpleDateFormat dataEus = new SimpleDateFormat("yyyyy/mm/dd");
-		Date fechaNac = new Date(ano+"/"+mes+"/"+dia);
-		usuario.setFechaNacimiento();
+		Date fechaNac = new Date(ano,mes,dia);
+		usuario.setFechaNacimiento(fechaNac);
 		return usuario;
 	}
 

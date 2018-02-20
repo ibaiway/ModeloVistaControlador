@@ -47,6 +47,7 @@ public class UsuarioModelo extends Conector {
 			Statement st = conexion.createStatement();
 			ResultSet rs = st.executeQuery("select * from usuarios where id=" +id);
 			
+			if(rs.next()){
 			era.setId(rs.getInt("id")); 
 			  era.setNombre(rs.getString("nombre"));
 			  era.setApellido(rs.getString("apellido"));
@@ -54,6 +55,7 @@ public class UsuarioModelo extends Conector {
 			  era.setDni(rs.getString("dni"));
 			  era.setFechaNacimiento(rs.getDate("fechaNacimiento"));
 			  return era;
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

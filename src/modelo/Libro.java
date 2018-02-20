@@ -1,13 +1,22 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class Libro {
 
 	private int id;
 	private String titulo;
 	private String autor;
+	private ArrayList<Prestamo> prestamos;
 	
 	
 	
+	public ArrayList<Prestamo> getPrestamos() {
+		return prestamos;
+	}
+	public void setPrestamos(ArrayList<Prestamo> prestamos) {
+		this.prestamos = prestamos;
+	}
 	public int getId() {
 		return id;
 	}
